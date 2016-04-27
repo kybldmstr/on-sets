@@ -234,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="1529" y="1094"/>
         </scene>
-        <!--View Controller-->
+        <!--Main Menu View Controller-->
         <scene sceneID="0JD-QS-7yc">
             <objects>
-                <viewController id="vBN-bw-Rg4" sceneMemberID="viewController">
+                <viewController id="vBN-bw-Rg4" customClass="MainMenuViewController" customModule="ON_SETS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LA8-AN-1hb"/>
                         <viewControllerLayoutGuide type="bottom" id="m27-1n-v4k"/>
@@ -254,7 +254,7 @@
                                     <color key="titleColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3Ov-uD-kbc" kind="show" id="Y9u-mo-Xoa"/>
+                                    <segue destination="3Ov-uD-kbc" kind="show" identifier="firstSegue" id="Y9u-mo-Xoa"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BRY" translatesAutoresizingMaskIntoConstraints="NO" id="X1i-KB-Orw">
@@ -319,15 +319,18 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
+                    <connections>
+                        <outlet property="levelSelector" destination="d8I-E7-c5r" id="46F-Hc-rxV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOz-kr-4iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="349" y="170"/>
         </scene>
-        <!--View Controller-->
+        <!--Rules View Controller-->
         <scene sceneID="fq0-jq-EMB">
             <objects>
-                <viewController id="3Ov-uD-kbc" sceneMemberID="viewController">
+                <viewController id="3Ov-uD-kbc" customClass="RulesViewController" customModule="ON_SETS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eKL-Di-nFC"/>
                         <viewControllerLayoutGuide type="bottom" id="QdA-wU-xeK"/>
@@ -350,7 +353,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Continue"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="dLZ-aT-fpn"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="secondSegue" id="dLZ-aT-fpn"/>
                                 </connections>
                             </button>
                         </subviews>
