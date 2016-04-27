@@ -79,6 +79,7 @@ class ViewController: UIViewController {
         numberOfCardsLabel.text = String(format:"%d", Int(cardsStepper.value))
     }
     
+    // shuffle cards and roll cubes
     @IBAction func shuffleCards(sender: AnyObject) {
         for var i = 0; i < 14; i += 1 {
             collectionOfCardViews![i].image = nil
@@ -128,6 +129,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // move the cubes
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
             let location = touch.locationInView(self.view)
