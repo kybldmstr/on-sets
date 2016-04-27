@@ -12,7 +12,10 @@ class ViewController: UIViewController {
     
     var levelPass: Int!
     var blueCount: Int!
+    var timer = NSTimer()
+    var counter: Int = 60
 
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var numberOfCardsLabel: UILabel!
     
     @IBOutlet weak var cardsStepper: UIStepper!
@@ -99,7 +102,23 @@ class ViewController: UIViewController {
         for var color = 0; color < 8; color += 1 {
             collectionOfColoredDiceViews![color].image = collectionOfColoredDiceImages[Int(arc4random_uniform(UInt32(4)))]
         }
+        startTimer()
     }
+    
+    @IBAction func startButton(sender: AnyObject) {
+        startTimer()
+    }
+    
+    @IBAction func resetButton(sender: AnyObject) {
+        endTimer()
+        counter = 60
+        timerLabel.text = String(counter)
+    }
+    
+    @IBAction func pauseButton(sender: AnyObject) {
+        endTimer()
+    }
+    
     
     //flip cards and/or flip number cubes
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -154,6 +173,22 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func startTimer() {
+        timer.invalidate() // just in case this button is tapped multiple times
+        
+        // start the timer
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("timerAction"), userInfo: nil, repeats: true)
+    }
+    
+    func endTimer() {
+        timer.invalidate()
+    }
+    
+    func timerAction() {
+        counter = counter - 1
+        timerLabel.text = String(counter)
     }
     
     override func viewDidLoad() {

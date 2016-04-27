@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ON-SETS/ViewController.swift"
-            timestampString = "483489258.685769"
+            timestampString = "483490550.824423"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "shuffleCards(_:)"
             landmarkType = "5">
          </BreakpointContent>
