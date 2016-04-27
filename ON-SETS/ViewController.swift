@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var levelPass: Int!
+    var blueCount: Int!
 
     @IBOutlet weak var numberOfCardsLabel: UILabel!
     
@@ -54,12 +55,7 @@ class ViewController: UIViewController {
     var goalDiceRolled: Array<Int> = [0,0,0]
 
     @IBOutlet var collectionOfBlueDiceViews: Array<UIImageView>?
-    var collectionOfBlueDiceImages: Array<UIImage> = [
-        UIImage(named: "equal")!,
-        UIImage(named: "subset")!,
-        UIImage(named: "universe")!,
-        UIImage(named: "nullset")!
-    ]
+    var collectionOfBlueDiceImages: Array<UIImage>! // will be set on view load
     
     @IBOutlet var collectionOfRedDiceViews: Array<UIImageView>?
     var collectionOfRedDiceImages: Array<UIImage> = [
@@ -95,7 +91,7 @@ class ViewController: UIViewController {
             collectionOfGoalDiceViews![goal].image = collectionOfGoalDiceImages[goalDiceRolled[goal]]
         }
         for var blue = 0; blue < 3; blue += 1 {
-            collectionOfBlueDiceViews![blue].image = collectionOfBlueDiceImages[Int(arc4random_uniform(UInt32(4)))]
+            collectionOfBlueDiceViews![blue].image = collectionOfBlueDiceImages[Int(arc4random_uniform(UInt32(blueCount)))]
         }
         for var red = 0; red < 4; red += 1 {
             collectionOfRedDiceViews![red].image = collectionOfRedDiceImages[Int(arc4random_uniform(UInt32(4)))]
@@ -164,7 +160,30 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        print(levelPass)
+        // set rules for level
+        // default is 6-12 cards, only need to change for Senior Division
+        if (levelPass == 3) {
+            cardsStepper.minimumValue = 10
+            cardsStepper.maximumValue = 14
+            numberOfCardsLabel.text = String(format:"%d", Int(cardsStepper.value))
+        }
+        // default is to use special symbols except for elementary
+        if (levelPass == 0) {
+            collectionOfBlueDiceImages = [
+                UIImage(named: "universe")!,
+                UIImage(named: "nullset")!
+            ]
+            blueCount = 2
+        } else {
+            collectionOfBlueDiceImages = [
+                UIImage(named: "equal")!,
+                UIImage(named: "subset")!,
+                UIImage(named: "universe")!,
+                UIImage(named: "nullset")!
+            ]
+            blueCount = 4
+        }
+
     }
     
     
