@@ -10,10 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var levelPass: Int!
-    var blueCount: Int!
+    var levelPass: Int!         //holds the level choosen from the title screen
+    var blueCount: Int!         //used for differentiating between 2 and 4 blue cubes in play depending on the level
     var timer = NSTimer()
-    var counter: Int = 60
+    var counter: Int = 60       //placeholder
+    
+    // the following variables are for movement of cubes
+    var isMoving: Bool = false  //true if user is in the middle of moving a cube
+    var isGoal: Bool = false    //true if user is moving a goal cube
+    var isBlue: Bool = false    //true if user is moving a blue cube
+    var isRed: Bool = false     //true if user is moving a red cube
+    var isColor: Bool = false   //true if user is moving a color cube
+    var indexFound: Int?        //hold the value of the index for which specific cube is being moved
+    
+    
 
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var numberOfCardsLabel: UILabel!
@@ -125,7 +135,7 @@ class ViewController: UIViewController {
         for touch in touches {
             let location = touch.locationInView(self.view)
             
-            for var card = 0; card < Int(cardsStepper.value); card += 1 {
+            for var card = 0; card < Int(cardsStepper.value)  ; card += 1 {
                 if collectionOfCardViews![card].frame.contains(location) {
                     if collectionOfCardViews![card].image == UIImage(named: "FLIPPED") {
                         collectionOfCardViews![card].image = collectionOfCardImages[card]
@@ -150,34 +160,77 @@ class ViewController: UIViewController {
     SPRINT 2 GOAL
     DEBUG THE MOVEMENT
     PROBLEM: WHEN USER MOVES ONE CUBE OVER THE OTHER IT WILL PICK UP ANOTHER IMAGEVIEW
+    CURRENT STATUS: BUG SQUASHED!!!!!!
     */
     // move the cubes
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         for touch in touches {
             let location = touch.locationInView(self.view)
             
-            for var goal = 0; goal < 3; goal += 1 {
-                if collectionOfGoalDiceViews![goal].frame.contains(location) {
-                    collectionOfGoalDiceViews![goal].center = location
-                    collectionOfGoalDiceViews![goal].image = collectionOfGoalDiceImages[goalDiceRolled[goal]]
+            // if no cube has started moving yet check to see if a cube has been touched
+            // after determining which cube has been touched set the boolean variables
+            // in addition set the indexFound variable to contain the index at which the cube was found
+            if (!isMoving) {
+                for var goal = 0; goal < 3; goal += 1 {
+                    if collectionOfGoalDiceViews![goal].frame.contains(location) {
+                        isMoving = true
+                        isGoal = true
+                        indexFound = goal
+                    }
                 }
-            }
-            for var blue = 0; blue < 3; blue += 1 {
-                if collectionOfBlueDiceViews![blue].frame.contains(location) {
-                    collectionOfBlueDiceViews![blue].center = location
+                for var blue = 0; blue < 3; blue += 1 {
+                    if collectionOfBlueDiceViews![blue].frame.contains(location) {
+                        isMoving = true
+                        isBlue = true
+                        indexFound = blue
+                    }
                 }
-            }
-            for var red = 0; red < 4; red += 1 {
-                if collectionOfRedDiceViews![red].frame.contains(location) {
-                    collectionOfRedDiceViews![red].center = location
+                for var red = 0; red < 4; red += 1 {
+                    if collectionOfRedDiceViews![red].frame.contains(location) {
+                        isMoving = true
+                        isRed = true
+                        indexFound = red
+                    }
                 }
-            }
-            for var color = 0; color < 8; color += 1 {
-                if collectionOfColoredDiceViews![color].frame.contains(location) {
-                    collectionOfColoredDiceViews![color].center = location
+                for var color = 0; color < 8; color += 1 {
+                    if collectionOfColoredDiceViews![color].frame.contains(location) {
+                        isMoving = true
+                        isColor = true
+                        indexFound = color
+                    }
+                }
+            // if a cube is in the process of being moved then stop searching and just move it
+            } else {
+                if isGoal {
+                    collectionOfGoalDiceViews![indexFound!].center = location
+                    collectionOfGoalDiceViews![indexFound!].image = collectionOfGoalDiceImages[goalDiceRolled[indexFound!]]
+                }
+                if isBlue {
+                    collectionOfBlueDiceViews![indexFound!].center = location
+                }
+                if isRed {
+                    collectionOfRedDiceViews![indexFound!].center = location
+                }
+                if isColor {
+                    collectionOfColoredDiceViews![indexFound!].center = location
                 }
             }
         }
+    }
+    
+    /*
+    When touches have ended reset all boolean variables
+    This is necessary so that on the next cube movement
+    the variables are fresh and not in states from the 
+    previous movement
+    */
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        isMoving = false
+        isGoal = false
+        isBlue = false
+        isRed = false
+        isColor = false
     }
     
     func startTimer() {
