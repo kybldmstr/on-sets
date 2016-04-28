@@ -146,6 +146,11 @@ class ViewController: UIViewController {
         }
     }
     
+    /*
+    SPRINT 2 GOAL
+    DEBUG THE MOVEMENT
+    PROBLEM: WHEN USER MOVES ONE CUBE OVER THE OTHER IT WILL PICK UP ANOTHER IMAGEVIEW
+    */
     // move the cubes
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         for touch in touches {
