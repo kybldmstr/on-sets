@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     var levelPass: Int!         //holds the level choosen from the title screen
+    var playerPass: Int!        //holds the number of players chosen from the title screen
     var blueCount: Int!         //used for differentiating between 2 and 4 blue cubes in play depending on the level
     var timer = NSTimer()
     var counter: Int = 60       //placeholder
@@ -27,6 +28,9 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var numberOfCardsLabel: UILabel!
+    @IBOutlet weak var cardsLabelText: UILabel!
+    @IBOutlet weak var shuffleButton: UIButton!
+    @IBOutlet weak var challengeButton: UIButton!
     
     @IBOutlet weak var cardsStepper: UIStepper!
     
@@ -112,7 +116,11 @@ class ViewController: UIViewController {
         for var color = 0; color < 8; color += 1 {
             collectionOfColoredDiceViews![color].image = collectionOfColoredDiceImages[Int(arc4random_uniform(UInt32(4)))]
         }
-        startTimer()
+        cardsLabelText.hidden = true
+        cardsStepper.hidden = true
+        numberOfCardsLabel.hidden = true
+        shuffleButton.hidden = true
+        challengeButton.hidden = false
     }
     
     @IBAction func startButton(sender: AnyObject) {
@@ -172,28 +180,28 @@ class ViewController: UIViewController {
             // after determining which cube has been touched set the boolean variables
             // in addition set the indexFound variable to contain the index at which the cube was found
             if (!isMoving) {
-                for var goal = 0; goal < 3; goal += 1 {
+                for var goal = 0; (goal < 3) && !isMoving; goal += 1 {
                     if collectionOfGoalDiceViews![goal].frame.contains(location) {
                         isMoving = true
                         isGoal = true
                         indexFound = goal
                     }
                 }
-                for var blue = 0; blue < 3; blue += 1 {
+                for var blue = 0; (blue < 3) && !isMoving; blue += 1 {
                     if collectionOfBlueDiceViews![blue].frame.contains(location) {
                         isMoving = true
                         isBlue = true
                         indexFound = blue
                     }
                 }
-                for var red = 0; red < 4; red += 1 {
+                for var red = 0; (red < 4) && !isMoving; red += 1 {
                     if collectionOfRedDiceViews![red].frame.contains(location) {
                         isMoving = true
                         isRed = true
                         indexFound = red
                     }
                 }
-                for var color = 0; color < 8; color += 1 {
+                for var color = 0; (color < 8) && !isMoving; color += 1 {
                     if collectionOfColoredDiceViews![color].frame.contains(location) {
                         isMoving = true
                         isColor = true
@@ -233,6 +241,8 @@ class ViewController: UIViewController {
         isColor = false
     }
     
+    
+    
     func startTimer() {
         timer.invalidate() // just in case this button is tapped multiple times
         
@@ -251,6 +261,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        challengeButton.hidden = true
         // Do any additional setup after loading the view, typically from a nib.
         
         // set rules for level
@@ -284,6 +296,22 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        //do som stuff from the popover
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //segue for the popover configuration window
+        if segue.identifier == "challengeSegue" {
+            let controller = segue.destinationViewController
+            controller.popoverPresentationController!.delegate = self
+            controller.preferredContentSize = CGSize(width: 400, height: 300)
+            
+            let svc = segue.destinationViewController as! ChallengeViewController
+            svc.numberOfPlayers = playerPass
+        }
     }
 
 

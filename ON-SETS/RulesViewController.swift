@@ -11,6 +11,7 @@ import UIKit
 class RulesViewController: UIViewController {
     
     var levelPass: Int!
+    var playerPass: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class RulesViewController: UIViewController {
         if(segue.identifier == "secondSegue") {
             let svc = segue.destinationViewController as! ViewController
             svc.levelPass = levelPass
+            svc.playerPass = playerPass
             
         }
     }

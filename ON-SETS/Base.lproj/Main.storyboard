@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15F24b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vBN-bw-Rg4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15F28b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vBN-bw-Rg4">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
@@ -203,7 +204,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BA0-Yw-zi3">
-                                <rect key="frame" x="754" y="728" width="39" height="30"/>
+                                <rect key="frame" x="757" y="726" width="39" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Reset"/>
                                 <connections>
@@ -218,6 +219,18 @@
                                     <action selector="startButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sHe-CZ-B7Q"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgD-89-z79">
+                                <rect key="frame" x="286" y="339" width="139" height="93"/>
+                                <animations/>
+                                <state key="normal" title="CHALLENGE" backgroundImage="challenge">
+                                    <color key="titleColor" red="0.0" green="0.50374842171717171" blue="0.00015420937781810987" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cMu-Ac-nzk" kind="popoverPresentation" identifier="challengeSegue" popoverAnchorView="wgD-89-z79" id="GEs-FB-3xe">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -225,8 +238,11 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
+                        <outlet property="cardsLabelText" destination="27I-7X-tuS" id="IcY-af-VuK"/>
                         <outlet property="cardsStepper" destination="bBA-91-Xr9" id="LdF-0w-u0k"/>
+                        <outlet property="challengeButton" destination="wgD-89-z79" id="TEE-DN-cUH"/>
                         <outlet property="numberOfCardsLabel" destination="pgv-ZT-Utx" id="aFk-H9-vBQ"/>
+                        <outlet property="shuffleButton" destination="O42-Tb-L8e" id="k9O-08-oAp"/>
                         <outlet property="timerLabel" destination="kR4-Sx-Odj" id="mYc-6S-6Jo"/>
                         <outletCollection property="collectionOfCardViews" destination="x5g-jq-y9Z" collectionClass="NSMutableArray" id="gLK-fI-jIM"/>
                         <outletCollection property="collectionOfCardViews" destination="DHa-xr-L23" collectionClass="NSMutableArray" id="Frq-lh-foA"/>
@@ -345,6 +361,30 @@
                                 </segments>
                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Division" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkE-DV-Fxd">
+                                <rect key="frame" x="439" y="423" width="146" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mDS-T9-WSK">
+                                <rect key="frame" x="412" y="537" width="201" height="29"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="Two"/>
+                                    <segment title="Three"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Number of Players" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drD-SB-Y9G">
+                                <rect key="frame" x="409" y="508" width="207" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -353,6 +393,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="levelSelector" destination="d8I-E7-c5r" id="46F-Hc-rxV"/>
+                        <outlet property="playerSelector" destination="mDS-T9-WSK" id="Z2z-el-JRI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOz-kr-4iY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,14 +412,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="GAME RULES AND INFORMATION WILL GO HERE" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vF3-dA-Fek">
-                                <rect key="frame" x="116" y="130" width="793" height="508"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4C-Al-epz">
                                 <rect key="frame" x="447" y="680" width="130" height="39"/>
                                 <animations/>
@@ -388,6 +421,32 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="secondSegue" id="dLZ-aT-fpn"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="helpScreen" translatesAutoresizingMaskIntoConstraints="NO" id="UdB-JX-vgG">
+                                <rect key="frame" x="20" y="61" width="736" height="573"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6DS-Sd-Akg">
+                                <rect key="frame" x="764" y="61" width="240" height="128"/>
+                                <animations/>
+                                <string key="text">Begin the game by selecting the number of cards to deal and clicking the Shuffle and Roll button. This will be on the game mat at the beggining of the shake.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="When a player is prepared to challenge simply tap the challenge icon and follow the prompts to end the shake." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CuB-Yt-3vs">
+                                <rect key="frame" x="767" y="480" width="235" height="128"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="During game play you can use your fingers to drag and drop cubes on the gme mat. You may also tap on cards to flip them over." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2oe-3X-Iew">
+                                <rect key="frame" x="762" y="284" width="240" height="128"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -399,6 +458,111 @@
             </objects>
             <point key="canvasLocation" x="1529" y="170"/>
         </scene>
+        <!--Challenge View Controller-->
+        <scene sceneID="nJH-SN-Xmg">
+            <objects>
+                <viewController id="cMu-Ac-nzk" customClass="ChallengeViewController" customModule="ON_SETS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GKy-x8-lO3"/>
+                        <viewControllerLayoutGuide type="bottom" id="rxN-Mu-sSg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mVO-eL-SkV">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8U-Up-PWk">
+                                <rect key="frame" x="135" y="19" width="88" height="30"/>
+                                <animations/>
+                                <state key="normal" title="CHALLENGE"/>
+                                <connections>
+                                    <action selector="challengeAction:" destination="cMu-Ac-nzk" eventType="touchUpInside" id="2yw-KH-pRY"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0PT-Vl-Xyh">
+                                <rect key="frame" x="20" y="20" width="101" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="Now"/>
+                                    <segment title="Never"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FR0-hc-AkB">
+                                <rect key="frame" x="20" y="57" width="181" height="29"/>
+                                <animations/>
+                                <segments>
+                                    <segment title="Player 1"/>
+                                    <segment title="Player 2"/>
+                                    <segment title="Player 3"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGy-UW-lOM">
+                                <rect key="frame" x="220" y="56" width="37" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="continueAction:" destination="cMu-Ac-nzk" eventType="touchUpInside" id="hET-mw-llS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Challenge Now or Never?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPF-81-UXQ">
+                                <rect key="frame" x="20" y="143" width="360" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNU-ff-Dv4">
+                                <rect key="frame" x="177" y="85" width="47" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVG-2v-v5F">
+                                <rect key="frame" x="175" y="162" width="50" height="30"/>
+                                <animations/>
+                                <state key="normal" title="SCORE"/>
+                                <connections>
+                                    <action selector="scoreAction:" destination="cMu-Ac-nzk" eventType="touchUpInside" id="luC-vu-Wsd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzv-R4-vuG">
+                                <rect key="frame" x="233" y="162" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="No"/>
+                                <connections>
+                                    <action selector="noAction:" destination="cMu-Ac-nzk" eventType="touchUpInside" id="Lxs-IU-zCP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heC-7f-0No">
+                                <rect key="frame" x="137" y="162" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Yes"/>
+                                <connections>
+                                    <action selector="yesAction:" destination="cMu-Ac-nzk" eventType="touchUpInside" id="1J2-iZ-Au0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="300"/>
+                    <connections>
+                        <outlet property="challengeButton" destination="Y8U-Up-PWk" id="1SI-ml-aao"/>
+                        <outlet property="challengeTypeSelector" destination="0PT-Vl-Xyh" id="PzS-aj-gpI"/>
+                        <outlet property="doneButton" destination="WGy-UW-lOM" id="gZg-x3-tQJ"/>
+                        <outlet property="messageLabel" destination="dPF-81-UXQ" id="O76-nz-d1W"/>
+                        <outlet property="noButton" destination="Uzv-R4-vuG" id="v2i-lJ-aSb"/>
+                        <outlet property="playerSelector" destination="FR0-hc-AkB" id="AMX-kE-yXx"/>
+                        <outlet property="scoreButton" destination="dVG-2v-v5F" id="XCM-PS-m6c"/>
+                        <outlet property="timerLabel" destination="VNU-ff-Dv4" id="8z4-fW-Ix6"/>
+                        <outlet property="yesButton" destination="heC-7f-0No" id="gGl-aX-Y5g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Chz-Ba-jqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2364" y="857"/>
+        </scene>
     </scenes>
     <resources>
         <image name="BGY" width="300" height="450"/>
@@ -407,7 +571,9 @@
         <image name="BRY" width="300" height="450"/>
         <image name="RGY" width="300" height="450"/>
         <image name="board" width="1800" height="1000"/>
+        <image name="challenge" width="32" height="31"/>
         <image name="crayon_button" width="391" height="105"/>
+        <image name="helpScreen" width="2042" height="1502"/>
         <image name="intersect" width="240" height="240"/>
         <image name="nullset" width="240" height="240"/>
         <image name="red" width="240" height="240"/>

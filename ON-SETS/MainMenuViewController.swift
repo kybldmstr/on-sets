@@ -11,6 +11,7 @@ import UIKit
 class MainMenuViewController: UIViewController {
 
     @IBOutlet weak var levelSelector: UISegmentedControl!
+    @IBOutlet weak var playerSelector: UISegmentedControl!
     
     
     override func viewDidLoad() {
@@ -28,7 +29,7 @@ class MainMenuViewController: UIViewController {
         if(segue.identifier == "firstSegue") {
             let svc = segue.destinationViewController as! RulesViewController
             svc.levelPass = levelSelector.selectedSegmentIndex
-            
+            svc.playerPass = playerSelector.selectedSegmentIndex
         }
     }
     
