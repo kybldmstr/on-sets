@@ -259,6 +259,14 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         timerLabel.text = String(counter)
     }
     
+    @IBAction func newGame(sender: AnyObject) {
+        cardsLabelText.hidden = false
+        cardsStepper.hidden = false
+        numberOfCardsLabel.hidden = false
+        shuffleButton.hidden = false
+        challengeButton.hidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -307,7 +315,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         if segue.identifier == "challengeSegue" {
             let controller = segue.destinationViewController
             controller.popoverPresentationController!.delegate = self
-            controller.preferredContentSize = CGSize(width: 400, height: 300)
+            controller.preferredContentSize = CGSize(width: 400, height: 200)
             
             let svc = segue.destinationViewController as! ChallengeViewController
             svc.numberOfPlayers = playerPass
